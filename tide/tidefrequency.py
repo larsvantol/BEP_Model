@@ -1,6 +1,5 @@
 from dataclasses import dataclass
 from functools import cached_property
-from typing import Self
 
 import numpy as np
 
@@ -28,7 +27,7 @@ class TideFrequency:
         return 1 / (self.period * 60 * 60)
 
     @classmethod
-    def from_complex_amplitude(cls, complex_amplitude, period) -> Self:
+    def from_complex_amplitude(cls, complex_amplitude, period) -> "TideFrequency":
         amplitude = np.sign(np.real(complex_amplitude)) * np.abs(complex_amplitude)
         phase = np.arctan(np.imag(complex_amplitude), np.real(complex_amplitude))
         return cls(period, amplitude, phase)
